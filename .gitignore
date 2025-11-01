@@ -1,0 +1,32 @@
+# =============== #
+# Unity generated #
+# =============== #
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+UserSettings/
+MemoryCaptures/
+Recordings/
+Sysroot/
+DerivedDataCache/
+.gradle/
+
+# Visual Studio
+.vs/
+*.csproj
+*.sln
+*.user
+*.unityproj
+*.pidb
+*.booproj
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# Unity Cloud build
+/Assets/StreamingAssets/aa.meta
+/Assets/StreamingAssets/aa/
