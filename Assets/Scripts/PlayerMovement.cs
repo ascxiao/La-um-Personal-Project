@@ -41,7 +41,10 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Move(){
-        rb.MovePosition(rb.position + movement * (moveSpeed * Time.fixedDeltaTime));
+        rb.linearVelocity = movement * moveSpeed;
+        if (movement == Vector2.zero)
+            rb.linearVelocity = Vector2.zero;
+
         FlipHandling();
         List <Sprite> directionSprites = GetSpriteDirection();
         
