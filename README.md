@@ -1,2 +1,0 @@
-# La-um-Personal-Project
-
