@@ -949,6 +949,7 @@ GameObject:
   - component: {fileID: 1625556326}
   - component: {fileID: 1625556331}
   - component: {fileID: 1625556332}
+  - component: {fileID: 1625556333}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -969,42 +970,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
-  spriteRenderer: {fileID: 1625556328}
-  nSprites:
-  - {fileID: -911346689934406790, guid: c6cd41d425abfef47bd10e909b625826, type: 3}
-  - {fileID: 7859978117963104324, guid: c6cd41d425abfef47bd10e909b625826, type: 3}
-  - {fileID: -6866259081250642554, guid: c6cd41d425abfef47bd10e909b625826, type: 3}
-  - {fileID: -6390260510111030141, guid: c6cd41d425abfef47bd10e909b625826, type: 3}
-  - {fileID: -5117158257601310438, guid: c6cd41d425abfef47bd10e909b625826, type: 3}
-  - {fileID: -4837580460008818571, guid: c6cd41d425abfef47bd10e909b625826, type: 3}
-  neSprites:
-  - {fileID: -7332710002753739377, guid: cf5a25f4044e0c143afec37af42565c0, type: 3}
-  - {fileID: 7364980697029777321, guid: cf5a25f4044e0c143afec37af42565c0, type: 3}
-  - {fileID: 5582715727463329063, guid: cf5a25f4044e0c143afec37af42565c0, type: 3}
-  - {fileID: -2146666144331569160, guid: cf5a25f4044e0c143afec37af42565c0, type: 3}
-  - {fileID: -6779104444267023562, guid: cf5a25f4044e0c143afec37af42565c0, type: 3}
-  - {fileID: 5613554418495032350, guid: cf5a25f4044e0c143afec37af42565c0, type: 3}
-  eSprites:
-  - {fileID: -7635695185552235487, guid: a5bff3efbf26d574e8bb325411f98dbf, type: 3}
-  - {fileID: 2958860821839671971, guid: a5bff3efbf26d574e8bb325411f98dbf, type: 3}
-  - {fileID: -7180300280392479502, guid: a5bff3efbf26d574e8bb325411f98dbf, type: 3}
-  - {fileID: 5362534595344678361, guid: a5bff3efbf26d574e8bb325411f98dbf, type: 3}
-  - {fileID: -9066560606260623857, guid: a5bff3efbf26d574e8bb325411f98dbf, type: 3}
-  - {fileID: 6877361062395825809, guid: a5bff3efbf26d574e8bb325411f98dbf, type: 3}
-  seSprites:
-  - {fileID: 2101911876787911477, guid: 08e5beec18724c24bbd482e7441060b0, type: 3}
-  - {fileID: -8716202148902646523, guid: 08e5beec18724c24bbd482e7441060b0, type: 3}
-  - {fileID: 862148769169749139, guid: 08e5beec18724c24bbd482e7441060b0, type: 3}
-  - {fileID: -1311325529349770359, guid: 08e5beec18724c24bbd482e7441060b0, type: 3}
-  - {fileID: -1391915577628469901, guid: 08e5beec18724c24bbd482e7441060b0, type: 3}
-  - {fileID: 2361338527269343691, guid: 08e5beec18724c24bbd482e7441060b0, type: 3}
-  sSprites:
-  - {fileID: 4361010176606612733, guid: 528decdc14a1d7c49bc39fc9f8618f9f, type: 3}
-  - {fileID: -6303293320282636654, guid: 528decdc14a1d7c49bc39fc9f8618f9f, type: 3}
-  - {fileID: 9114452919368434213, guid: 528decdc14a1d7c49bc39fc9f8618f9f, type: 3}
-  - {fileID: 8929889462037602494, guid: 528decdc14a1d7c49bc39fc9f8618f9f, type: 3}
-  - {fileID: -8659581802472275055, guid: 528decdc14a1d7c49bc39fc9f8618f9f, type: 3}
-  - {fileID: 8311375936930020167, guid: 528decdc14a1d7c49bc39fc9f8618f9f, type: 3}
   frameRate: 8
 --- !u!50 &1625556327
 Rigidbody2D:
@@ -1152,6 +1117,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e86c638bea6b8dd4997d7356f78f1090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1625556333
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625556325}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b5742e531561d2a4cbe7a641a7b0b391, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &1753687949 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3509907650720645923, guid: c134c0ecf1b0f1b45b4f6e010b7ed279, type: 3}

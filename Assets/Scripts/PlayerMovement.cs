@@ -37,8 +37,10 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Move(){
+        animator.SetBool("isMoving", true);
         rb.linearVelocity = movement * moveSpeed;
         if (movement == Vector2.zero){
+            animator.SetBool("isMoving", false);
             rb.linearVelocity = Vector2.zero;
         }else{
             animator.SetFloat("XInput", movement.x);
