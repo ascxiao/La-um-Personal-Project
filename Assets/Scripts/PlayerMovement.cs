@@ -5,22 +5,27 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 1f;
+    [SerializeField] public float moveSpeed = 1f;
     [SerializeField] private float runningSpeed = 1.5f;
 
     private PlayerControls playerControls;
     private Vector2 movement;
-    private Rigidbody2D rb;
-    private Animator animator;
     private bool runningState;
-
-    public float frameRate;
-    float idleTime;
+    
+    public Rigidbody2D rb;
+    public SpriteRenderer spriteRenderer;
+    public Animator animator;
+    public static PlayerMovement instance;
+    public bool isAttacking = false;
+    public bool nextCombo = false;
 
     private void Awake(){
         playerControls = new PlayerControls();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        instance = this;
     }
 
     private void OnEnable(){
@@ -38,9 +43,12 @@ public class PlayerMovement : MonoBehaviour
     private void PlayerInput(){
         movement = playerControls.Movement.Move.ReadValue<Vector2>().normalized;
         playerControls.Movement.Run.performed += OnRunPressed;
+        playerControls.Attack.Sword.performed += Attack;
     }
 
     private void Move(){
+        Flip();
+
         if(runningState == false){
             animator.SetBool("isRunning", false);
             animator.SetBool("isMoving", true);
@@ -60,8 +68,23 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-        private void OnRunPressed(InputAction.CallbackContext context)
+    private void OnRunPressed(InputAction.CallbackContext context)
     {
         runningState = !runningState;
+    }
+
+    void Attack(InputAction.CallbackContext context){
+        if (!isAttacking && context.performed){
+            isAttacking = true;
+        }
+
+    }
+
+    void Flip(){
+        if (!spriteRenderer.flipX && movement.x < 0){
+            spriteRenderer.flipX = true;
+        } else if (spriteRenderer.flipX && movement.x > 0){
+            spriteRenderer.flipX = false;
+        }
     }
 }

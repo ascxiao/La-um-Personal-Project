@@ -93,6 +93,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Attack",
+            "id": "c630a934-85d6-44c9-a699-63a2c06a68a8",
+            "actions": [
+                {
+                    "name": "Sword",
+                    "type": "Button",
+                    "id": "483d2017-9d53-4d97-9a39-51d3ef5dfa2a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "cd279ca5-d52f-48a6-9fb6-22cd2463df89",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sword",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
