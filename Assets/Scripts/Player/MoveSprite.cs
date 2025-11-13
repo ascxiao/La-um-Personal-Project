@@ -8,14 +8,17 @@ public class MoveAttack : StateMachineBehaviour
     //    
     //}
 
-     // OnStateUpdate is called before OnStateUpdate is called on any state inside this state machine
+    // OnStateUpdate is called before OnStateUpdate is called on any state inside this state machine
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Vector2 pos = PlayerMovement.instance.rb.position;
-        if(!PlayerMovement.instance.spriteRenderer.flipX){
+        if (PlayerMovement.instance.transform.localScale.x > 0)
+        {
             pos.x += PlayerMovement.instance.moveSpeed * Time.deltaTime;
             PlayerMovement.instance.rb.MovePosition(pos);
-        } else {
+        }
+        else
+        {
             pos.x -= PlayerMovement.instance.moveSpeed * Time.deltaTime;
             PlayerMovement.instance.rb.MovePosition(pos);
         }
