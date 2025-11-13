@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] public float moveSpeed = 1f;
-    [SerializeField] private float runningSpeed = 1.5f;
 
     private PlayerControls playerControls;
     private Vector2 movement;
@@ -17,7 +16,6 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     public static PlayerMovement instance;
     public bool isAttacking = false;
-    public bool nextCombo = false;
 
     private void Awake(){
         playerControls = new PlayerControls();
@@ -56,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
         } else {
             animator.SetBool("isRunning", true);
             animator.SetBool("isMoving", true);
-            rb.linearVelocity = movement * runningSpeed;
+            rb.linearVelocity = movement * (moveSpeed + 0.5f);
         }
 
         if (movement == Vector2.zero){
@@ -76,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
     void Attack(InputAction.CallbackContext context){
         if (!isAttacking && context.performed){
             isAttacking = true;
+            moveSpeed -= 0.5f;
         }
 
     }

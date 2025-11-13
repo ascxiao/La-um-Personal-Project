@@ -12,10 +12,7 @@ public class Transition2 : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if(PlayerMovement.instance.isAttacking){
-            if(stateInfo.normalizedTime >= 0.9f && !PlayerMovement.instance.nextCombo){
-                    PlayerMovement.instance.animator.Play("Sword-Atk-3");
-                    PlayerMovement.instance.nextCombo = true;
-                }
+                PlayerMovement.instance.animator.Play("Sword-Atk-3");
         }  
     }
 
@@ -23,7 +20,7 @@ public class Transition2 : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         PlayerMovement.instance.isAttacking = false;
-        PlayerMovement.instance.nextCombo = false;
+        PlayerMovement.instance.moveSpeed = 1f;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
