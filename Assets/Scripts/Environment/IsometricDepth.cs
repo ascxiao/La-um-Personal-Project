@@ -7,6 +7,7 @@ public class IsometricDepth : MonoBehaviour
     private PolygonCollider2D polyCollider;
     private int baseOrder;
     private Color c;
+    public bool shouldFade = true;
 
     void Awake()
     {
@@ -24,7 +25,10 @@ public class IsometricDepth : MonoBehaviour
             if (playerSprite != null)
             {
                 spriteRenderer.sortingOrder = playerSprite.sortingOrder + 1;
-                StartCoroutine(FadeTo(0.5f, 0.25f));
+
+                if (shouldFade){
+                    StartCoroutine(FadeTo(0.5f, 0.25f));
+                }
             }
         }
     }
