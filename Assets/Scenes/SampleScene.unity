@@ -1446,6 +1446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e86c638bea6b8dd4997d7356f78f1090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shouldFade: 1
 --- !u!95 &1625556333
 Animator:
   serializedVersion: 7
@@ -1516,7 +1517,9 @@ GameObject:
   - component: {fileID: 1673729322}
   - component: {fileID: 1673729327}
   - component: {fileID: 1673729328}
-  m_Layer: 3
+  - component: {fileID: 1673729329}
+  - component: {fileID: 1673729330}
+  m_Layer: 0
   m_Name: Santermo
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1597,7 +1600,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.18, y: 0.18}
+    oldSize: {x: 0.48, y: 0.48}
     newSize: {x: 0.18, y: 0.18}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1682,10 +1685,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 8007014594154357448, guid: 2821b2d714051f24aa981d0bbc05ce17, type: 3}
+  m_SortingLayerID: 1429864247
+  m_SortingLayer: 1
+  m_SortingOrder: 8
+  m_Sprite: {fileID: -7592073812464269333, guid: fbb064f1d84545d4ea7467c0eda0b501, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1738,6 +1741,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
+--- !u!114 &1673729329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673729321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86c638bea6b8dd4997d7356f78f1090, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shouldFade: 0
+--- !u!95 &1673729330
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673729321}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: db38bef62f557b94180fb8d91fa25e03, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1746831175
 GameObject:
   m_ObjectHideFlags: 0
