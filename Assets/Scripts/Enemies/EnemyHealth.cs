@@ -2,14 +2,25 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    private int currentHealth;
+    public int currentHealth;
     [SerializeField] private int maxHealth;
 
-    public void ChangeHealth(int amount){
+    private void Start()
+    {
+        currentHealth = maxHealth;
+    }
+
+    public void ChangeHealth(int amount)
+    {
         currentHealth += amount;
 
-        if(currentHealth <= 0){
-            gameObject.SetActive(false);
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        else if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }
