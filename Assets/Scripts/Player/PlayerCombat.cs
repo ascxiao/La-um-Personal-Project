@@ -20,7 +20,7 @@ public class PlayerCombat : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (hitTrigger.IsTouching(other) && other.CompareTag("Enemy"))
+        if (hitTrigger != null && hitTrigger.IsTouching(other) && other.CompareTag("Enemy"))
         {
             other.GetComponent<EnemyHealth>()?.ChangeHealth(-damage);
         }

@@ -14,7 +14,6 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     public static PlayerMovement instance;
     public bool isAttacking = false;
-    public PlayerCombat playerCombat;
 
     private void Awake()
     {
