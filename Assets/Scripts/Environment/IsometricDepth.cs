@@ -4,7 +4,8 @@ using System.Collections;
 public class IsometricDepth : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
-    private PolygonCollider2D polyCollider;
+    public GameObject objectBounds;
+    private Collider2D col;
     private int baseOrder;
     private Color c;
     public bool shouldFade = true;
@@ -13,20 +14,28 @@ public class IsometricDepth : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         baseOrder = spriteRenderer.sortingOrder;
-
-        polyCollider = GetComponent<PolygonCollider2D>();
+        if (objectBounds == null) Debug.LogWarning("objectBounds is null on " + gameObject.name);
+        col = objectBounds.GetComponent<Collider2D>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("Enemy"))
         {
             SpriteRenderer playerSprite = other.GetComponent<SpriteRenderer>();
-            if (playerSprite != null)
+            if (col.IsTouching(other) && playerSprite != null)
             {
-                spriteRenderer.sortingOrder = playerSprite.sortingOrder + 1;
+                if (other.CompareTag("Player"))
+                {
+                    spriteRenderer.sortingOrder = playerSprite.sortingOrder + 1;
+                }
+                else if (other.CompareTag("Enemy"))
+                {
+                    spriteRenderer.sortingOrder = playerSprite.sortingOrder + 1;
+                }
 
-                if (shouldFade){
+                if (shouldFade && other.CompareTag("Player"))
+                {
                     StartCoroutine(FadeTo(0.5f, 0.25f));
                 }
             }
@@ -35,15 +44,16 @@ public class IsometricDepth : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+
+
+        if (!col.IsTouching(other) && (other.CompareTag("Player") || other.CompareTag("Enemy")))
         {
-            SpriteRenderer playerSprite = other.GetComponent<SpriteRenderer>();
             spriteRenderer.sortingOrder = baseOrder;
             StartCoroutine(FadeTo(1f, 0.25f));
         }
     }
 
-        private IEnumerator FadeTo(float targetAlpha, float duration)
+    private IEnumerator FadeTo(float targetAlpha, float duration)
     {
         Color c = spriteRenderer.color;
         float startAlpha = c.a;

@@ -14,8 +14,13 @@ public class EnemyMovement : MonoBehaviour
     private Collider2D boundaryCollider;
     private int aggroCooldown;
     private Coroutine countdownCoroutine;
+    private Coroutine moveCoroutine;
     private Vector2 movement;
-    private float aggroSpeed = 0.75f;
+
+    public Vector3 initialPos;
+
+    public float aggroSpeed = 0.75f;
+    public bool isAggro = false;
 
     private void Awake()
     {
@@ -23,18 +28,47 @@ public class EnemyMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         aggroHitbox = aggro.GetComponent<Collider2D>();
         boundaryCollider = boundary.GetComponent<Collider2D>();
-        StartCoroutine(WanderRoutine());
+        initialPos = transform.position;
+        EnableCoroutine();
     }
 
     private void FixedUpdate()
     {
-        Vector2 nextPos = rb.position + rb.linearVelocity * Time.fixedDeltaTime;
-
-        if (!boundaryCollider.OverlapPoint(nextPos))
+        if (!isAggro && boundaryCollider.OverlapPoint(transform.position))
         {
-            movement = -movement;
-            rb.linearVelocity = movement * movementSpeed;
+            WithinPath();
         }
+        else if (!isAggro && !boundaryCollider.OverlapPoint(transform.position))
+        {
+            Vector2 direction = (boundaryCollider.bounds.center - transform.position).normalized;
+            rb.linearVelocity = direction * 0.5f;
+        }
+    }
+
+    void Flip()
+    {
+        if (movement.x > 0 && transform.localScale.x > 0 ||
+            movement.x < 0 && transform.localScale.x < 0)
+        {
+            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+        }
+    }
+
+
+    public void EnableCoroutine()
+    {
+        if (moveCoroutine == null)
+        {
+            moveCoroutine = StartCoroutine(WanderRoutine());
+        }
+    }
+    public void DisableCoroutine()
+    {
+        if (moveCoroutine != null)
+            StopCoroutine(moveCoroutine);
+
+        if (TryGetComponent(out Rigidbody2D rb))
+            rb.linearVelocity = Vector2.zero;
     }
 
     ///------------------------------------------
@@ -47,6 +81,7 @@ public class EnemyMovement : MonoBehaviour
             {
                 StopCoroutine(countdownCoroutine);
             }
+            isAggro = true;
             animator.SetBool("isAggro", true);
             movementSpeed = 0.75f;
         }
@@ -56,11 +91,22 @@ public class EnemyMovement : MonoBehaviour
     {
         if (!aggroHitbox.IsTouching(other) && other.CompareTag("Player"))
         {
-            aggroCooldown = 10;
+            aggroCooldown = 3;
             countdownCoroutine = StartCoroutine(AggroTimer());
         }
     }
 
+
+    private void WithinPath()
+    {
+        Vector2 nextPos = rb.position + rb.linearVelocity * Time.fixedDeltaTime;
+
+        if (!boundaryCollider.OverlapPoint(nextPos) && !isAggro)
+        {
+            movement = -movement;
+            rb.linearVelocity = movement * movementSpeed;
+        }
+    }
     IEnumerator AggroTimer()
     {
         while (aggroCooldown > 0)
@@ -70,12 +116,13 @@ public class EnemyMovement : MonoBehaviour
         }
 
         movementSpeed = 0.25f;
+        isAggro = false;
         animator.SetBool("isAggro", false);
     }
 
     IEnumerator WanderRoutine()
     {
-        while (true)
+        while (!isAggro)
         {
             rb.linearVelocity = Vector2.zero;
 
@@ -85,6 +132,7 @@ public class EnemyMovement : MonoBehaviour
             Debug.Log(movement);
 
             rb.linearVelocity = movement * movementSpeed;
+            Flip();
 
             yield return new WaitForSeconds(intervalMovement);
 
