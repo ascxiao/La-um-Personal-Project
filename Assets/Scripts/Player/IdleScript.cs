@@ -11,8 +11,14 @@ public class IdleScript : StateMachineBehaviour
     // OnStateUpdate is called before OnStateUpdate is called on any state inside this state machine
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(PlayerMovement.instance.isAttacking){
+        if (PlayerMovement.instance.isAttacking)
+        {
             PlayerMovement.instance.animator.Play("Sword-Atk-1");
+        }
+
+        if (PlayerMovement.instance.isDashing)
+        {
+            PlayerMovement.instance.animator.Play("Dash");
         }
     }
 
@@ -20,6 +26,7 @@ public class IdleScript : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         PlayerMovement.instance.isAttacking = false;
+        PlayerMovement.instance.isDashing = false;
     }
 
     // OnStateMove is called before OnStateMove is called on any state inside this state machine

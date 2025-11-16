@@ -6,14 +6,17 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] public float moveSpeed = 1f;
+    [SerializeField] private float dashSpeed = 2f;
 
     private PlayerControls playerControls;
     private Vector2 movement;
+    private Vector2 lastDirection;
     private bool runningState;
     public Rigidbody2D rb;
     public Animator animator;
     public static PlayerMovement instance;
     public bool isAttacking = false;
+    public bool isDashing = false;
 
     private void Awake()
     {
@@ -27,6 +30,9 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         playerControls.Enable();
+        playerControls.Movement.Run.performed += OnRunPressed;
+        playerControls.Attack.Sword.performed += Attack;
+        playerControls.Movement.Dash.performed += Dash;
     }
 
     private void Update()
@@ -36,19 +42,27 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Move();
+        if (!isDashing)
+        {
+            Move();
+        }
     }
 
     private void PlayerInput()
     {
         movement = playerControls.Movement.Move.ReadValue<Vector2>().normalized;
-        playerControls.Movement.Run.performed += OnRunPressed;
-        playerControls.Attack.Sword.performed += Attack;
+
+        if (movement != Vector2.zero)
+        {
+            lastDirection = movement.normalized;
+        }
     }
 
     private void Move()
     {
         Flip();
+
+        lastDirection = movement.normalized;
 
         if (runningState == false)
         {
@@ -88,6 +102,16 @@ public class PlayerMovement : MonoBehaviour
             moveSpeed -= 0.5f;
         }
 
+    }
+
+    void Dash(InputAction.CallbackContext context)
+    {
+        if (!isDashing && context.performed)
+        {
+            //FIX DASHHHHHH
+            isDashing = true;
+            rb.linearVelocity = lastDirection * dashSpeed;
+        }
     }
 
     void Flip()
