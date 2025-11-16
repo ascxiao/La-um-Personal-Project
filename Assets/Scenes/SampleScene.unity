@@ -1591,9 +1591,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
+  dashSpeed: 2
   rb: {fileID: 0}
   animator: {fileID: 0}
   isAttacking: 0
+  isDashing: 0
 --- !u!50 &1625556327
 Rigidbody2D:
   serializedVersion: 5
