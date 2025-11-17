@@ -129,7 +129,6 @@ public class EnemyMovement : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
 
             movement = Random.insideUnitCircle.normalized;
-            Debug.Log(movement);
 
             rb.linearVelocity = movement * movementSpeed;
             Flip();

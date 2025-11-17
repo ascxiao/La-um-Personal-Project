@@ -26,7 +26,6 @@ public class IdleScript : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         PlayerMovement.instance.isAttacking = false;
-        PlayerMovement.instance.isDashing = false;
     }
 
     // OnStateMove is called before OnStateMove is called on any state inside this state machine

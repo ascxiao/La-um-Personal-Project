@@ -6,7 +6,7 @@ public class PlayerHealth : MonoBehaviour
     public int currentHealth;
     public int maxHealth;
     [SerializeField] private float iframes = 1f;
-    private bool invincible = false;
+    public bool invincible = false;
     private Coroutine iframe;
 
     public void ChangeHealth(int amount)
