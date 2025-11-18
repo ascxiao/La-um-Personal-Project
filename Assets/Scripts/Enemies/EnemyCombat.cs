@@ -15,6 +15,7 @@ public class EnemyCombat : MonoBehaviour
     private Animator animator;
     private Coroutine timer;
     public bool isAttacking = false;
+    public bool isStaggered = false;
 
     public EnemyMovement enemyMovement;
     public static EnemyCombat instance;
@@ -38,17 +39,23 @@ public class EnemyCombat : MonoBehaviour
 
     private void Chase()
     {
-        if (enemyMovement.isAggro && !isAttacking)
+        if (!isStaggered)
         {
-            enemyMovement.DisableCoroutine();
-            Vector2 direction = (player.position - transform.position).normalized;
+            if (enemyMovement.isAggro && !isAttacking)
+            {
+                enemyMovement.DisableCoroutine();
+                Vector2 direction = (player.position - transform.position).normalized;
 
-            rb.linearVelocity = direction * enemyMovement.aggroSpeed;
-            enemyMovement.Flip(direction);
+                rb.linearVelocity = direction * enemyMovement.aggroSpeed;
+            }
+            else
+            {
+                enemyMovement.EnableCoroutine();
+            }
         }
         else
         {
-            enemyMovement.EnableCoroutine();
+            rb.linearVelocity = Vector2.zero;
         }
     }
 
