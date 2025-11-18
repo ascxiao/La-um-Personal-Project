@@ -68,25 +68,4 @@ public class DamageFlash : MonoBehaviour
             materials[i].SetFloat("_FlashAmount", amount);
         }
     }
-
-    private void DebugCheck()
-    {
-        // Check spriteRenderers
-        if (spriteRenderers == null)
-            Debug.LogError("[NullDebugger] spriteRenderers ARRAY is NULL");
-        else if (spriteRenderers.Length == 0)
-            Debug.LogWarning("[NullDebugger] spriteRenderers ARRAY is EMPTY");
-
-        // Check materials
-        if (materials == null)
-            Debug.LogError("[NullDebugger] materials ARRAY is NULL");
-        else if (materials.Length == 0)
-            Debug.LogWarning("[NullDebugger] materials ARRAY is EMPTY");
-
-        // Check damageFlashCoroutine
-        if (damageFlashCoroutine == null)
-            Debug.Log("[NullDebugger] damageFlashCoroutine is NULL (this is normal until coroutine runs)");
-        else
-            Debug.Log("[NullDebugger] damageFlashCoroutine exists!");
-    }
 }

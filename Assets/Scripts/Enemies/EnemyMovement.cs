@@ -17,8 +17,6 @@ public class EnemyMovement : MonoBehaviour
     private Coroutine moveCoroutine;
     private Vector2 movement;
 
-    public Vector3 initialPos;
-
     public float aggroSpeed = 0.75f;
     public bool isAggro = false;
 
@@ -28,7 +26,6 @@ public class EnemyMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         aggroHitbox = aggro.GetComponent<Collider2D>();
         boundaryCollider = boundary.GetComponent<Collider2D>();
-        initialPos = transform.position;
         EnableCoroutine();
     }
 
