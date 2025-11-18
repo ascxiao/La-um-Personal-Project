@@ -44,6 +44,7 @@ public class EnemyCombat : MonoBehaviour
             Vector2 direction = (player.position - transform.position).normalized;
 
             rb.linearVelocity = direction * enemyMovement.aggroSpeed;
+            enemyMovement.Flip(direction);
         }
         else
         {

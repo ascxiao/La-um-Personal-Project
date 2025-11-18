@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Map
+  - Small Foliage
   layers:
   - Default
   - TransparentFX

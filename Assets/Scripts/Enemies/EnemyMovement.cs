@@ -42,13 +42,14 @@ public class EnemyMovement : MonoBehaviour
         {
             Vector2 direction = (boundaryCollider.bounds.center - transform.position).normalized;
             rb.linearVelocity = direction * 0.5f;
+            Flip(direction);
         }
     }
 
-    void Flip()
+    public void Flip(Vector2 direction)
     {
-        if (movement.x > 0 && transform.localScale.x > 0 ||
-            movement.x < 0 && transform.localScale.x < 0)
+        if (direction.x > 0 && transform.localScale.x > 0 ||
+            direction.x < 0 && transform.localScale.x < 0)
         {
             transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
         }
@@ -104,7 +105,7 @@ public class EnemyMovement : MonoBehaviour
         if (!boundaryCollider.OverlapPoint(nextPos) && !isAggro)
         {
             movement = -movement;
-            rb.linearVelocity = movement * movementSpeed;
+            Flip(movement);
         }
     }
     IEnumerator AggroTimer()
@@ -131,7 +132,6 @@ public class EnemyMovement : MonoBehaviour
             movement = Random.insideUnitCircle.normalized;
 
             rb.linearVelocity = movement * movementSpeed;
-            Flip();
 
             yield return new WaitForSeconds(intervalMovement);
 
