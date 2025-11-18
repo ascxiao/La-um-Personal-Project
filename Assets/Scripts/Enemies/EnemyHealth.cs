@@ -12,7 +12,7 @@ public class EnemyHealth : MonoBehaviour
     public bool invincible = false;
     public bool isHealing = false;
     public static EnemyHealth instance;
-    public EnemyCombat enemyCombat;
+    private EnemyCombat enemyCombat;
     private DamageFlash damageFlash;
 
     private void Start()
@@ -37,10 +37,10 @@ public class EnemyHealth : MonoBehaviour
         }
         else if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            animator.Play("Death");
         }
 
-        if (amount < 0)
+        if (amount < 0 && currentHealth > 0)
         {
             animator.Play("Stagger");
             invincible = true;
