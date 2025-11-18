@@ -5191,7 +5191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2a7585d3b4f7834b85ffe3cba5843b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1
+  maxHealth: 10
   currentHealth: 0
   invincible: 0
   isHealing: 0
@@ -5208,7 +5208,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  player: {fileID: 0}
   atkHitbox: {fileID: 7884803089828471983}
   atkProx: {fileID: 4093266163386717281}
   rb: {fileID: 0}
