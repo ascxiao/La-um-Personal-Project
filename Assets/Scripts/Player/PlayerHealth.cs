@@ -8,12 +8,21 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float iframes = 1.5f;
     public bool invincible = false;
     private Coroutine iframe;
+    private DamageFlash damageFlash;
+
+    private void Awake()
+    {
+        damageFlash = GetComponent<DamageFlash>();
+    }
 
     public void ChangeHealth(int amount)
     {
-
         if (!invincible)
         {
+            if (amount < 0)
+            {
+                damageFlash.CallDamageFlash();
+            }
             invincible = true;
             currentHealth += amount;
 
