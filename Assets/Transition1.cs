@@ -11,7 +11,12 @@ public class Transition1 : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(PlayerMovement.instance.isAttacking){
+        if (PlayerMovement.instance.isDashing)
+        {
+            PlayerMovement.instance.animator.Play("Dash");
+        }
+        if (PlayerMovement.instance.isAttacking && !PlayerMovement.instance.isDashing)
+        {
             PlayerMovement.instance.animator.Play("Sword-Atk-2");
         }
     }
