@@ -45,6 +45,7 @@ public class EnemyCombat : MonoBehaviour
             {
                 enemyMovement.DisableCoroutine();
                 Vector2 direction = (player.position - transform.position).normalized;
+                enemyMovement.Flip(direction);
 
                 rb.linearVelocity = direction * enemyMovement.aggroSpeed;
             }

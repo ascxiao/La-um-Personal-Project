@@ -10,11 +10,10 @@ public class EnemyHealth : MonoBehaviour
     private Animator animator;
 
     public bool invincible = false;
-    public bool isDamaged = false;
     public bool isHealing = false;
-
     public static EnemyHealth instance;
     public EnemyCombat enemyCombat;
+    private DamageFlash damageFlash;
 
     private void Start()
     {
@@ -22,25 +21,14 @@ public class EnemyHealth : MonoBehaviour
         animator = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         enemyCombat = GetComponent<EnemyCombat>();
+        damageFlash = GetComponent<DamageFlash>();
         instance = this;
-    }
-    private void Update()
-    {
-        Damage();
     }
     public void ChangeHealth(int amount)
     {
         if (!invincible || isHealing)
         {
             currentHealth += amount;
-        }
-
-        if (amount < 0)
-        {
-            animator.Play("Stagger");
-            invincible = true;
-            isDamaged = true;
-            enemyCombat.isStaggered = true;
         }
 
         if (currentHealth > maxHealth)
@@ -51,19 +39,13 @@ public class EnemyHealth : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
 
-    void Damage()
-    {
-        if (isDamaged)
+        if (amount < 0)
         {
-            Color c = new Color(1f, 0f, 0f);
-            sr.color = c;
-        }
-        else
-        {
-            Color c = new Color(1f, 1f, 1f);
-            sr.color = c;
+            animator.Play("Stagger");
+            invincible = true;
+            enemyCombat.isStaggered = true;
+            damageFlash.CallDamageFlash();
         }
     }
 }

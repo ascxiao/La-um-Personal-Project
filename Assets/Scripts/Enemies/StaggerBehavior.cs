@@ -19,7 +19,6 @@ public class StaggerBehavior : StateMachineBehaviour
     {
         EnemyHealth.instance.invincible = false;
         EnemyHealth.instance.enemyCombat.isStaggered = false;
-        EnemyHealth.instance.isDamaged = false;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
