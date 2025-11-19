@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemyHealth : MonoBehaviour
 {
 
-    [SerializeField] private int maxHealth;
+    [SerializeField] public int maxHealth;
     public int currentHealth;
 
     private SpriteRenderer sr;

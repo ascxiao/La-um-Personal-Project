@@ -4,11 +4,12 @@ using System.Collections;
 
 public class FloatingHealthBar : MonoBehaviour
 {
-    [SerializeField] private Slider slider;
+    [SerializeField] public Slider slider;
 
     public void UpdateHealthBar(float currentValue, float maxValue)
     {
         slider.value = currentValue / maxValue;
+        Debug.Log(slider.value);
     }
 
 }
