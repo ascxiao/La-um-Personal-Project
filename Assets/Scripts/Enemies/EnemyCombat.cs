@@ -111,7 +111,7 @@ public class EnemyCombat : MonoBehaviour
 
     private IEnumerator WaitForReset()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         isAttacking = false;
         animator.SetBool("isAttacking", false);
