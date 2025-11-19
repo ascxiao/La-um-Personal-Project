@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemyCombat : MonoBehaviour
 {
     public int damage = 1;
-    public Transform player;
+    private Transform player;
 
     [SerializeField] private GameObject atkHitbox;
     [SerializeField] private GameObject atkProx;
@@ -26,6 +26,7 @@ public class EnemyCombat : MonoBehaviour
         atkProxCol = atkProx.GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
 
         instance = this;
     }
@@ -82,7 +83,7 @@ public class EnemyCombat : MonoBehaviour
             }
             isAttacking = true;
             animator.SetBool("isAttacking", true);
-            Debug.Log(isAttacking);
+            rb.linearVelocity = Vector2.zero;
         }
 
         if (hitbox.IsTouching(other) && other.CompareTag("Player"))

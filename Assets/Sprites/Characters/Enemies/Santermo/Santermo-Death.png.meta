@@ -1,16 +1,22 @@
 fileFormatVersion: 2
-guid: 79758f4de00d0624fb2cef01cdbb698a
+guid: e27cc40602299cd488e4aab3cda2ecca
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7194596193971956975
-    second: Santermo-Stagger_0
+      213: -9159138821831548435
+    second: Santermo-Death_0
   - first:
-      213: 2354180015602685954
-    second: Santermo-Stagger_1
+      213: 1278084853554178350
+    second: Santermo-Death_1
   - first:
-      213: -3600747004408890308
-    second: Santermo-Stagger_2
+      213: -7340800843909664477
+    second: Santermo-Death_2
+  - first:
+      213: -5259068087655865248
+    second: Santermo-Death_3
+  - first:
+      213: 4951760091575001791
+    second: Santermo-Death_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -106,7 +112,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Santermo-Stagger_0
+      name: Santermo-Death_0
       rect:
         serializedVersion: 2
         x: 0
@@ -119,16 +125,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 7075f31c72ac46c449128646a3c6c3db
-      internalID: -7194596193971956975
+      spriteID: de1ad3cc4c334e080800000000000000
+      internalID: -9159138821831548435
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Santermo-Stagger_1
+      name: Santermo-Death_1
       rect:
         serializedVersion: 2
         x: 48
@@ -141,16 +147,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 5c7eb9f631e922146848d205f70afa4e
-      internalID: 2354180015602685954
+      spriteID: e2967e8176bacb110800000000000000
+      internalID: 1278084853554178350
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Santermo-Stagger_2
+      name: Santermo-Death_2
       rect:
         serializedVersion: 2
         x: 96
@@ -163,16 +169,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 855287828b8a7af4286e9ede2763aa8f
-      internalID: -3600747004408890308
+      spriteID: 32170e3968c302a90800000000000000
+      internalID: -7340800843909664477
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Santermo-Stagger_3
+      name: Santermo-Death_3
       rect:
         serializedVersion: 2
         x: 144
@@ -185,16 +191,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 5f0efc6a78cb2c54097e70e087123fe3
-      internalID: -1600362002
+      spriteID: 064eda120790407b0800000000000000
+      internalID: -5259068087655865248
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Santermo-Stagger_4
+      name: Santermo-Death_4
       rect:
         serializedVersion: 2
         x: 192
@@ -207,10 +213,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 01b7fd9334f1e96429346981c6f323be
-      internalID: 610171853
+      spriteID: fb2a847519f28b440800000000000000
+      internalID: 4951760091575001791
       vertices: []
       indices: 
       edges: []
@@ -219,7 +225,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 65c63247c160d40498d70ce5047c63ec
+    spriteID: 6110569ef544c6146964c91f0638dcff
     internalID: 0
     vertices: []
     indices: 
@@ -229,11 +235,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Santermo-Stagger_0: -7194596193971956975
-      Santermo-Stagger_1: 2354180015602685954
-      Santermo-Stagger_2: -3600747004408890308
-      Santermo-Stagger_3: -1600362002
-      Santermo-Stagger_4: 610171853
+      Santermo-Death_0: -9159138821831548435
+      Santermo-Death_1: 1278084853554178350
+      Santermo-Death_2: -7340800843909664477
+      Santermo-Death_3: -5259068087655865248
+      Santermo-Death_4: 4951760091575001791
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

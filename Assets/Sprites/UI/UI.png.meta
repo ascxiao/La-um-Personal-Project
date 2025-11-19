@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: 79758f4de00d0624fb2cef01cdbb698a
+guid: ced9dcc69ceafbe4cb9ffb8e60e28e8f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7194596193971956975
-    second: Santermo-Stagger_0
-  - first:
-      213: 2354180015602685954
-    second: Santermo-Stagger_1
-  - first:
-      213: -3600747004408890308
-    second: Santermo-Stagger_2
+      213: -1557013538026691241
+    second: UI_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -106,111 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Santermo-Stagger_0
+      name: UI_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 48
-        height: 48
+        y: 117
+        width: 16
+        height: 6
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 7075f31c72ac46c449128646a3c6c3db
-      internalID: -7194596193971956975
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Santermo-Stagger_1
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5c7eb9f631e922146848d205f70afa4e
-      internalID: 2354180015602685954
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Santermo-Stagger_2
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 855287828b8a7af4286e9ede2763aa8f
-      internalID: -3600747004408890308
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Santermo-Stagger_3
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5f0efc6a78cb2c54097e70e087123fe3
-      internalID: -1600362002
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Santermo-Stagger_4
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 01b7fd9334f1e96429346981c6f323be
-      internalID: 610171853
+      spriteID: 755e173cf60646ae0800000000000000
+      internalID: -1557013538026691241
       vertices: []
       indices: 
       edges: []
@@ -219,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 65c63247c160d40498d70ce5047c63ec
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -229,11 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Santermo-Stagger_0: -7194596193971956975
-      Santermo-Stagger_1: 2354180015602685954
-      Santermo-Stagger_2: -3600747004408890308
-      Santermo-Stagger_3: -1600362002
-      Santermo-Stagger_4: 610171853
+      UI_0: -1557013538026691241
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
