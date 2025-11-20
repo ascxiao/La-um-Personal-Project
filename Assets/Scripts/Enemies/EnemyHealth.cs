@@ -34,6 +34,7 @@ public class EnemyHealth : MonoBehaviour
         if (!invincible || isHealing)
         {
             currentHealth += amount;
+            damageFlash.CallDamageFlash();
             healthBar.SetActive(true);
 
             if (healthCoroutine != null)
@@ -58,7 +59,6 @@ public class EnemyHealth : MonoBehaviour
             animator.Play("Stagger");
             invincible = true;
             enemyCombat.isStaggered = true;
-            damageFlash.CallDamageFlash();
         }
     }
 

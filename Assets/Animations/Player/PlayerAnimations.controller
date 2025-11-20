@@ -171,6 +171,18 @@ AnimatorStateMachine:
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -5900728635257612539}
+--- !u!114 &-5533478407957708482
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 719babe440d623b45b33bddd26529dd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1102 &-5418090355314587876
 AnimatorState:
   serializedVersion: 6
@@ -540,6 +552,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4082fe6632455b84d93a00cb52c8ccfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1420238874490280876
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b99817f489417df4db6f151e23ae1114, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfx: {fileID: 0}
+  fx: {fileID: 0}
 --- !u!1102 &2003714959344997352
 AnimatorState:
   serializedVersion: 6
@@ -555,6 +581,7 @@ AnimatorState:
   - {fileID: -5087767802241754151}
   m_StateMachineBehaviours:
   - {fileID: 1007527579374372196}
+  - {fileID: -5533478407957708482}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -711,6 +738,18 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!114 &3715247923817021164
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1478ef167ecf3fe4bb9244c7870d23be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3814290030199339913
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1179,6 +1218,7 @@ AnimatorState:
   - {fileID: 4545029060376700745}
   m_StateMachineBehaviours:
   - {fileID: 5349285601625391268}
+  - {fileID: 3715247923817021164}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
