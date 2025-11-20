@@ -504,6 +504,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1284328018}
     m_Modifications:
+    - target: {fileID: 3325224189009776283, guid: 64b18e44923b1414fa43884a096efc44, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3325224189009776283, guid: 64b18e44923b1414fa43884a096efc44, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8534128394517013889, guid: 64b18e44923b1414fa43884a096efc44, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.383
@@ -712,6 +720,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1284328018}
     m_Modifications:
+    - target: {fileID: 3325224189009776283, guid: 64b18e44923b1414fa43884a096efc44, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3325224189009776283, guid: 64b18e44923b1414fa43884a096efc44, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8534128394517013889, guid: 64b18e44923b1414fa43884a096efc44, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.251
@@ -871,6 +887,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1284328018}
     m_Modifications:
+    - target: {fileID: 3325224189009776283, guid: 64b18e44923b1414fa43884a096efc44, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3325224189009776283, guid: 64b18e44923b1414fa43884a096efc44, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8534128394517013889, guid: 64b18e44923b1414fa43884a096efc44, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.164
@@ -1368,13 +1392,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1284328018}
     m_Modifications:
+    - target: {fileID: 6739010980342895086, guid: 64b18e44923b1414fa43884a096efc44, type: 3}
+      propertyPath: m_Mass
+      value: 0.015393804
+      objectReference: {fileID: 0}
+    - target: {fileID: 6739010980342895086, guid: 64b18e44923b1414fa43884a096efc44, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6739010980342895086, guid: 64b18e44923b1414fa43884a096efc44, type: 3}
+      propertyPath: m_UseAutoMass
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8534128394517013889, guid: 64b18e44923b1414fa43884a096efc44, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.3274836
+      value: -2.862
       objectReference: {fileID: 0}
     - target: {fileID: 8534128394517013889, guid: 64b18e44923b1414fa43884a096efc44, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.18934257
+      value: -1.347
       objectReference: {fileID: 0}
     - target: {fileID: 8534128394517013889, guid: 64b18e44923b1414fa43884a096efc44, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1645,7 +1681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72345e514798792428c31b04f987b992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 2
   dashDistance: 0.5
   playerHealth: {fileID: 0}
   rb: {fileID: 0}
@@ -1722,7 +1758,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1429864247
   m_SortingLayer: 1
-  m_SortingOrder: 10
+  m_SortingOrder: 11
   m_Sprite: {fileID: 4361010176606612733, guid: 528decdc14a1d7c49bc39fc9f8618f9f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2016,10 +2052,6 @@ PrefabInstance:
     - target: {fileID: 3415299507662236671, guid: 27ba7386eb529414082271e5fb9eac31, type: 3}
       propertyPath: m_Name
       value: Mango (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4502172234390024232, guid: 27ba7386eb529414082271e5fb9eac31, type: 3}
-      propertyPath: m_SortingOrder
-      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
