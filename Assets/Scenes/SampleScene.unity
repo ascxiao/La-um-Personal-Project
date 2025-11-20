@@ -603,7 +603,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 0000000037ff3955
+  m_ApplyToSortingLayers: 0000000037ff3955d9a43038
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -1392,18 +1392,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1284328018}
     m_Modifications:
-    - target: {fileID: 6739010980342895086, guid: 64b18e44923b1414fa43884a096efc44, type: 3}
-      propertyPath: m_Mass
-      value: 0.015393804
-      objectReference: {fileID: 0}
-    - target: {fileID: 6739010980342895086, guid: 64b18e44923b1414fa43884a096efc44, type: 3}
-      propertyPath: m_BodyType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6739010980342895086, guid: 64b18e44923b1414fa43884a096efc44, type: 3}
-      propertyPath: m_UseAutoMass
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8534128394517013889, guid: 64b18e44923b1414fa43884a096efc44, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.862
@@ -1883,6 +1871,7 @@ MonoBehaviour:
   - {fileID: 1746831175}
   - {fileID: 1964286707}
   - {fileID: 1166075229}
+  particleFX: {fileID: 2123406538311534012, guid: 58eeae8c06e072a4893e272699db34dc, type: 3}
   damage: 1
 --- !u!114 &1625556336
 MonoBehaviour:
