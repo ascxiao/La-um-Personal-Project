@@ -8,6 +8,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float intervalMovement;
     [SerializeField] private float movementSpeed;
 
+    private float baseSpeed;
     private Animator animator;
     private Rigidbody2D rb;
     private Collider2D aggroHitbox;
@@ -26,6 +27,7 @@ public class EnemyMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         aggroHitbox = aggro.GetComponent<Collider2D>();
         boundaryCollider = boundary.GetComponent<Collider2D>();
+        baseSpeed = movementSpeed;
         EnableCoroutine();
     }
 
@@ -113,7 +115,7 @@ public class EnemyMovement : MonoBehaviour
             aggroCooldown--;
         }
 
-        movementSpeed = 0.25f;
+        movementSpeed = baseSpeed;
         isAggro = false;
         animator.SetBool("isAggro", false);
     }
