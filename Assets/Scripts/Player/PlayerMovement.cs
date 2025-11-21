@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashDistance = 0.5f;
 
     private PlayerControls playerControls;
-    private Vector2 movement = Vector2.down;
+    public Vector2 movement = Vector2.down;
     private Vector2 lastDirection = Vector2.down;
     private bool runningState;
     public PlayerHealth playerHealth;
