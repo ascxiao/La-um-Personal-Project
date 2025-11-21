@@ -9,10 +9,13 @@ public class PlayerHealth : MonoBehaviour
     public bool invincible = false;
     private Coroutine iframe;
     private DamageFlash damageFlash;
+    private FloatingHealthBar floatingHealthBar;
 
     private void Awake()
     {
         damageFlash = GetComponent<DamageFlash>();
+        floatingHealthBar = GetComponent<FloatingHealthBar>();
+        currentHealth = maxHealth;
     }
 
     public void ChangeHealth(int amount)
@@ -30,6 +33,7 @@ public class PlayerHealth : MonoBehaviour
             {
                 gameObject.SetActive(false);
             }
+            floatingHealthBar.UpdateHealthBar(currentHealth, maxHealth);
             iframe = StartCoroutine(IFrameTrigger());
         }
     }
