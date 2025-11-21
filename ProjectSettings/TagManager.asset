@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Enemy
+  - Map
+  - Small Foliage
   layers:
   - Default
   - TransparentFX
@@ -44,6 +46,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1429864247
+    locked: 0
+  - name: Effects
+    uniqueID: 942712025
     locked: 0
   m_RenderingLayers:
   - Default

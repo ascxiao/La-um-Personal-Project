@@ -22,16 +22,16 @@ public class IsometricDepth : MonoBehaviour
     {
         if (other.CompareTag("Player") || other.CompareTag("Enemy"))
         {
-            SpriteRenderer playerSprite = other.GetComponent<SpriteRenderer>();
-            if (col.IsTouching(other) && playerSprite != null)
+            SpriteRenderer otherSprite = other.GetComponent<SpriteRenderer>();
+            if (col.IsTouching(other) && otherSprite != null)
             {
-                if (other.CompareTag("Player"))
+                if (other.CompareTag("Player") || other.CompareTag("Enemy"))
                 {
-                    spriteRenderer.sortingOrder = playerSprite.sortingOrder + 1;
+                    spriteRenderer.sortingOrder = otherSprite.sortingOrder + 1;
                 }
-                else if (other.CompareTag("Enemy"))
+                else if (other.CompareTag("Enemy") && gameObject.CompareTag("Small Foliage"))
                 {
-                    spriteRenderer.sortingOrder = playerSprite.sortingOrder + 1;
+                    spriteRenderer.sortingOrder = otherSprite.sortingOrder - 1;
                 }
 
                 if (shouldFade && other.CompareTag("Player"))
@@ -44,7 +44,6 @@ public class IsometricDepth : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-
 
         if (!col.IsTouching(other) && (other.CompareTag("Player") || other.CompareTag("Enemy")))
         {

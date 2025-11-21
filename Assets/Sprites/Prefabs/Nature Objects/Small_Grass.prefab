@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 2632019477766744514}
   m_Layer: 0
   m_Name: Small_Grass
-  m_TagString: Untagged
+  m_TagString: Small Foliage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

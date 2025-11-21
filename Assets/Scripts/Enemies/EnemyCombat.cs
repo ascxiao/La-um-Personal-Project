@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemyCombat : MonoBehaviour
 {
     public int damage = 1;
-    public Transform player;
+    private Transform player;
 
     [SerializeField] private GameObject atkHitbox;
     [SerializeField] private GameObject atkProx;
@@ -15,6 +15,7 @@ public class EnemyCombat : MonoBehaviour
     private Animator animator;
     private Coroutine timer;
     public bool isAttacking = false;
+    public bool isStaggered = false;
 
     public EnemyMovement enemyMovement;
     public static EnemyCombat instance;
@@ -25,6 +26,7 @@ public class EnemyCombat : MonoBehaviour
         atkProxCol = atkProx.GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
 
         instance = this;
     }
@@ -38,16 +40,24 @@ public class EnemyCombat : MonoBehaviour
 
     private void Chase()
     {
-        if (enemyMovement.isAggro && !isAttacking)
+        if (!isStaggered)
         {
-            enemyMovement.DisableCoroutine();
-            Vector2 direction = (player.position - transform.position).normalized;
+            if (enemyMovement.isAggro && !isAttacking)
+            {
+                enemyMovement.DisableCoroutine();
+                Vector2 direction = (player.position - transform.position).normalized;
+                enemyMovement.Flip(direction);
 
-            rb.linearVelocity = direction * enemyMovement.aggroSpeed;
+                rb.linearVelocity = direction * enemyMovement.aggroSpeed;
+            }
+            else
+            {
+                enemyMovement.EnableCoroutine();
+            }
         }
         else
         {
-            enemyMovement.EnableCoroutine();
+            rb.linearVelocity = Vector2.zero;
         }
     }
 
@@ -73,7 +83,7 @@ public class EnemyCombat : MonoBehaviour
             }
             isAttacking = true;
             animator.SetBool("isAttacking", true);
-            Debug.Log(isAttacking);
+            rb.linearVelocity = Vector2.zero;
         }
 
         if (hitbox.IsTouching(other) && other.CompareTag("Player"))
@@ -101,7 +111,7 @@ public class EnemyCombat : MonoBehaviour
 
     private IEnumerator WaitForReset()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         isAttacking = false;
         animator.SetBool("isAttacking", false);

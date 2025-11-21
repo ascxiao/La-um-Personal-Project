@@ -1,18 +1,49 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyHealth : MonoBehaviour
 {
+
+    [SerializeField] public int maxHealth;
     public int currentHealth;
-    [SerializeField] private int maxHealth;
+
+    private SpriteRenderer sr;
+    private Animator animator;
+
+    public bool invincible = false;
+    public bool isHealing = false;
+    public static EnemyHealth instance;
+    private EnemyCombat enemyCombat;
+    private DamageFlash damageFlash;
+    private FloatingHealthBar floatingHealthBar;
+    public GameObject healthBar;
+    private Coroutine healthCoroutine;
 
     private void Start()
     {
         currentHealth = maxHealth;
+        animator = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
+        enemyCombat = GetComponent<EnemyCombat>();
+        damageFlash = GetComponent<DamageFlash>();
+        floatingHealthBar = GetComponent<FloatingHealthBar>();
+        instance = this;
     }
-
     public void ChangeHealth(int amount)
     {
-        currentHealth += amount;
+        if (!invincible || isHealing)
+        {
+            currentHealth += amount;
+            damageFlash.CallDamageFlash();
+            healthBar.SetActive(true);
+
+            if (healthCoroutine != null)
+            {
+                StopCoroutine(healthCoroutine);
+            }
+            healthCoroutine = StartCoroutine(HealthBar());
+            floatingHealthBar.UpdateHealthBar(currentHealth, maxHealth);
+        }
 
         if (currentHealth > maxHealth)
         {
@@ -20,7 +51,21 @@ public class EnemyHealth : MonoBehaviour
         }
         else if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            animator.Play("Death");
         }
+
+        if (amount < 0 && currentHealth > 0)
+        {
+            animator.Play("Stagger");
+            invincible = true;
+            enemyCombat.isStaggered = true;
+        }
+    }
+
+    IEnumerator HealthBar()
+    {
+        healthBar.SetActive(true);
+        yield return new WaitForSeconds(5f);
+        healthBar.SetActive(false);
     }
 }

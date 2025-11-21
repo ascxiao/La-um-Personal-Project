@@ -1,26 +1,28 @@
 using UnityEngine;
 
-public class Transition1 : StateMachineBehaviour
+public class StaggerBehavior : StateMachineBehaviour
 {
+    EnemyHealth health;
+    EnemyCombat combat;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        health = animator.GetComponent<EnemyHealth>();
+        combat = animator.GetComponent<EnemyCombat>();
+    }
+
+    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
+    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{
     //    
     //}
 
-    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        if(PlayerMovement.instance.isAttacking){
-            PlayerMovement.instance.animator.Play("Sword-Atk-2");
-        }
-    }
-
-    // OnStateExit is called before OnStateExit is called on any state inside this state machine
+    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        PlayerMovement.instance.isAttacking = false;
-        PlayerMovement.instance.moveSpeed = 1f;
+
+        health.invincible = false;
+        combat.isStaggered = false;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

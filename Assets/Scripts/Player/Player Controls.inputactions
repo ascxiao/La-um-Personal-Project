@@ -23,6 +23,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "fe3aa5fd-fb2d-42c6-9a74-556382df6efb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -84,11 +93,22 @@
                 {
                     "name": "",
                     "id": "8065322c-9f86-4f74-8de1-abe373901eda",
-                    "path": "<Keyboard>/rightShift",
+                    "path": "<Keyboard>/capsLock",
                     "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "Run",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "83345e9d-ce67-4767-8ac6-5421ebb2dbfe",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

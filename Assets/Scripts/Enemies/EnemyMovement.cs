@@ -8,6 +8,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float intervalMovement;
     [SerializeField] private float movementSpeed;
 
+    private float baseSpeed;
     private Animator animator;
     private Rigidbody2D rb;
     private Collider2D aggroHitbox;
@@ -16,8 +17,6 @@ public class EnemyMovement : MonoBehaviour
     private Coroutine countdownCoroutine;
     private Coroutine moveCoroutine;
     private Vector2 movement;
-
-    public Vector3 initialPos;
 
     public float aggroSpeed = 0.75f;
     public bool isAggro = false;
@@ -28,7 +27,7 @@ public class EnemyMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         aggroHitbox = aggro.GetComponent<Collider2D>();
         boundaryCollider = boundary.GetComponent<Collider2D>();
-        initialPos = transform.position;
+        baseSpeed = movementSpeed;
         EnableCoroutine();
     }
 
@@ -42,13 +41,14 @@ public class EnemyMovement : MonoBehaviour
         {
             Vector2 direction = (boundaryCollider.bounds.center - transform.position).normalized;
             rb.linearVelocity = direction * 0.5f;
+            Flip(direction);
         }
     }
 
-    void Flip()
+    public void Flip(Vector2 direction)
     {
-        if (movement.x > 0 && transform.localScale.x > 0 ||
-            movement.x < 0 && transform.localScale.x < 0)
+        if (direction.x > 0 && transform.localScale.x > 0 ||
+            direction.x < 0 && transform.localScale.x < 0)
         {
             transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
         }
@@ -104,7 +104,7 @@ public class EnemyMovement : MonoBehaviour
         if (!boundaryCollider.OverlapPoint(nextPos) && !isAggro)
         {
             movement = -movement;
-            rb.linearVelocity = movement * movementSpeed;
+            Flip(movement);
         }
     }
     IEnumerator AggroTimer()
@@ -115,7 +115,7 @@ public class EnemyMovement : MonoBehaviour
             aggroCooldown--;
         }
 
-        movementSpeed = 0.25f;
+        movementSpeed = baseSpeed;
         isAggro = false;
         animator.SetBool("isAggro", false);
     }
@@ -129,10 +129,8 @@ public class EnemyMovement : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
 
             movement = Random.insideUnitCircle.normalized;
-            Debug.Log(movement);
 
             rb.linearVelocity = movement * movementSpeed;
-            Flip();
 
             yield return new WaitForSeconds(intervalMovement);
 
