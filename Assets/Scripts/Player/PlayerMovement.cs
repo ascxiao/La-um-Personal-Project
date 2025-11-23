@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 movement = Vector2.down;
     private Vector2 lastDirection = Vector2.down;
     private bool runningState;
-    public PlayerHealth playerHealth;
+    public PlayerStats PlayerStats;
     public Rigidbody2D rb;
     public Animator animator;
     public static PlayerMovement instance;
@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         playerControls = new PlayerControls();
-        playerHealth = GetComponent<PlayerHealth>();
+        PlayerStats = GetComponent<PlayerStats>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
@@ -110,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
         if (!isDashing && context.performed)
         {
             isDashing = true;
-            playerHealth.invincible = true;
+            PlayerStats.invincible = true;
             RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, lastDirection, dashDistance);
 
             if (hits.Length > 0)

@@ -31075,7 +31075,7 @@ MonoBehaviour:
   moveSpeed: 1
   dashDistance: 0.5
   movement: {x: 0, y: -1}
-  playerHealth: {fileID: 0}
+  PlayerStats: {fileID: 0}
   rb: {fileID: 0}
   animator: {fileID: 0}
   isAttacking: 0
@@ -31255,8 +31255,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 067f0539b6a40b246b5efb620775ff2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 0
-  maxHealth: 20
+  baseStats: {fileID: 11400000, guid: 9ad159046c893db4abe9f43f387c28f7, type: 2}
+  def: 0
   iframes: 1.5
   invincible: 0
 --- !u!114 &1625556335

@@ -1,9 +1,16 @@
 using UnityEngine;
 using System.Collections;
+using System;
+
 
 public class EnemyCombat : MonoBehaviour
 {
-    public int damage = 1;
+    public StatsSO baseStats;
+
+    private float atk;
+    private float critR;
+    private float critD;
+    private PlayerStats targetStats;
     private Transform player;
 
     [SerializeField] private GameObject atkHitbox;
@@ -19,9 +26,15 @@ public class EnemyCombat : MonoBehaviour
 
     public EnemyMovement enemyMovement;
     public static EnemyCombat instance;
+    private System.Random rng = new System.Random();
+
 
     private void Start()
     {
+        atk = baseStats.baseAtk;
+        critR = baseStats.baseCritR;
+        critD = baseStats.baseCritD;
+
         hitbox = atkHitbox.GetComponent<Collider2D>();
         atkProxCol = atkProx.GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
@@ -31,12 +44,13 @@ public class EnemyCombat : MonoBehaviour
         instance = this;
     }
 
-    //CHASING STATE
 
     private void Update()
     {
         Chase();
     }
+
+    //IMPROVE PATHFINDING ALGORITHM, I SUGGEST TRANSFERING THE SCRIPT TO A SEPARATE ONE
 
     private void Chase()
     {
@@ -88,7 +102,8 @@ public class EnemyCombat : MonoBehaviour
 
         if (hitbox.IsTouching(other) && other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerHealth>()?.ChangeHealth(-damage);
+            targetStats = other.GetComponent<PlayerStats>();
+            other.GetComponent<PlayerStats>()?.ChangeHealth(-DamageCalculator());
         }
     }
 
@@ -107,6 +122,25 @@ public class EnemyCombat : MonoBehaviour
         {
             timer = StartCoroutine(WaitForReset());
         }
+    }
+
+
+    private float DamageCalculator()
+    {
+        float damage = atk - targetStats.def + (rng.Next(-1, 5) * 0.10f);
+
+        if (damage < 0)
+        {
+            damage = 1;
+        }
+
+        if (rng.Next(1, 100) <= critR)
+        {
+            damage *= critD / 100;
+        }
+
+        Debug.Log(damage);
+        return damage;
     }
 
     private IEnumerator WaitForReset()
