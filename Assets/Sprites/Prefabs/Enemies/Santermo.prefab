@@ -10678,7 +10678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c34b172a177328b42be02174b3715ab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  baseStats: {fileID: 11400000, guid: 0669506eb8ae5c6408e229b28dc0a183, type: 2}
   atkHitbox: {fileID: 1548067640276858706}
   atkProx: {fileID: 3000910525354215339}
   rb: {fileID: 0}

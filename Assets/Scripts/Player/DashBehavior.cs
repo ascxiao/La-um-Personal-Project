@@ -18,7 +18,7 @@ public class DashBehavior : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         PlayerMovement.instance.isDashing = false;
-        PlayerMovement.instance.playerHealth.invincible = false;
+        PlayerMovement.instance.PlayerStats.invincible = false;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
