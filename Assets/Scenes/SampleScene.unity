@@ -31290,7 +31290,7 @@ MonoBehaviour:
   particleFX: {fileID: 2123406538311534012, guid: 58eeae8c06e072a4893e272699db34dc, type: 3}
   atkPower:
   - 1
-  - 1.5
+  - 1.05
   - 1.2
   - 0.95
   - 0.8
