@@ -2,11 +2,22 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
+
     [SerializeField] private GameObject[] hitbox;
     [SerializeField] private GameObject particleFX;
+    [SerializeField] private float[] atkPower;
+    private int atkIndex = 0;
+    private EnemyCombat enemyStats;
+    private CombatManager cm;
+    private PlayerStats ps;
     private Collider2D hitTrigger;
     public int damage = 1;
 
+    private void Start()
+    {
+        cm = GetComponent<CombatManager>();
+        ps = GetComponent<PlayerStats>();
+    }
     public void EnableHitbox(int hitBoxIndex)
     {
         hitTrigger = hitbox[hitBoxIndex].GetComponent<PolygonCollider2D>();
@@ -20,14 +31,18 @@ public class PlayerCombat : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        enemyStats = other.GetComponent<EnemyCombat>();
         if (hitTrigger != null && hitTrigger.IsTouching(other) && other.CompareTag("Enemy"))
         {
             Vector3 spawnPos = other.transform.position;
 
             ParticleFx(spawnPos);
-            other.GetComponent<EnemyHealth>()?.ChangeHealth(-damage);
+            float currentPower = atkPower[atkIndex];
+            other.GetComponent<EnemyHealth>()?.ChangeHealth(-cm.DamageCalculator(ps.atk, enemyStats.def, ps.critR, ps.critD, ps.luck, currentPower));
 
-
+            atkIndex++;
+            if (atkIndex >= atkPower.Length)
+                atkIndex = 0;
         }
     }
 

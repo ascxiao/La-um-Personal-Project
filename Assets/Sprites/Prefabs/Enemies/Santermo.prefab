@@ -5000,8 +5000,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 942712025
-  m_SortingLayer: 1
-  m_SortingOrder: 1
+  m_SortingLayer: 2
+  m_SortingOrder: 2
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -10131,7 +10131,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 942712025
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -10480,6 +10480,8 @@ GameObject:
   - component: {fileID: 2681382600621040008}
   - component: {fileID: 1174319722240998608}
   - component: {fileID: 6642992548676316905}
+  - component: {fileID: 4673001481879633668}
+  - component: {fileID: 6559487755942646881}
   m_Layer: 0
   m_Name: SantermoObject
   m_TagString: Enemy
@@ -10551,7 +10553,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1429864247
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 10
   m_Sprite: {fileID: -7592073812464269333, guid: fbb064f1d84545d4ea7467c0eda0b501, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -10661,7 +10663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2a7585d3b4f7834b85ffe3cba5843b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  baseStats: {fileID: 11400000, guid: 0669506eb8ae5c6408e229b28dc0a183, type: 2}
   currentHealth: 0
   invincible: 0
   isHealing: 0
@@ -10679,12 +10681,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseStats: {fileID: 11400000, guid: 0669506eb8ae5c6408e229b28dc0a183, type: 2}
+  def: 0
+  atkPower:
+  - 1
   atkHitbox: {fileID: 1548067640276858706}
   atkProx: {fileID: 3000910525354215339}
   rb: {fileID: 0}
   isAttacking: 0
   isStaggered: 0
-  enemyMovement: {fileID: 8620936067816593237}
 --- !u!114 &8620936067816593237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10700,7 +10704,7 @@ MonoBehaviour:
   aggro: {fileID: 103427069950174832}
   boundary: {fileID: 4154984841857436638}
   intervalMovement: 1
-  movementSpeed: 0.25
+  movementSpeed: 0.5
   aggroSpeed: 0.75
   isAggro: 0
 --- !u!114 &6539322603407079374
@@ -10758,6 +10762,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 6070884945777944510}
   damageVis: {fileID: 5569506071989526737}
+--- !u!114 &4673001481879633668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4578366807159362106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 179135e71780552438a12a1896bc168b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6559487755942646881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4578366807159362106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 466d3f94949f6c9439d1a28fcd1bcf1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyMovement: {fileID: 0}
 --- !u!1 &5621332655891767638
 GameObject:
   m_ObjectHideFlags: 0
