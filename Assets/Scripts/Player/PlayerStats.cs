@@ -8,6 +8,11 @@ public class PlayerStats : MonoBehaviour
     private float currentHealth;
     private float maxHealth;
     public float def;
+    public float atk;
+    public float spd;
+    public float critR;
+    public float critD;
+    public float luck;
 
     [SerializeField] private float iframes = 1.5f;
     public bool invincible = false;
@@ -20,6 +25,12 @@ public class PlayerStats : MonoBehaviour
     {
         maxHealth = baseStats.maxHealth;
         def = baseStats.baseDef;
+        atk = baseStats.baseDef;
+        spd = baseStats.baseSpeed;
+        critR = baseStats.baseCritR;
+        critD = baseStats.baseCritD;
+        luck = baseStats.baseLuck;
+
         damageFlash = GetComponent<DamageFlash>();
         floatingHealthBar = GetComponent<FloatingHealthBar>();
         currentHealth = maxHealth;
@@ -35,13 +46,12 @@ public class PlayerStats : MonoBehaviour
             }
             invincible = true;
             currentHealth += amount;
-
+            floatingHealthBar.UpdateHealthBar(currentHealth, maxHealth);
+            iframe = StartCoroutine(IFrameTrigger());
             if (currentHealth <= 0)
             {
                 gameObject.SetActive(false);
             }
-            floatingHealthBar.UpdateHealthBar(currentHealth, maxHealth);
-            iframe = StartCoroutine(IFrameTrigger());
         }
     }
 

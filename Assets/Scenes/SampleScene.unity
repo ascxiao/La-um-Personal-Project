@@ -246,7 +246,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1429864247
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 7
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -9932,7 +9932,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1429864247
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 7
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -10438,7 +10438,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1429864247
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 7
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -15823,7 +15823,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1429864247
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 7
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -25369,7 +25369,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1429864247
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 7
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -25582,7 +25582,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 942712025
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 7
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -30785,6 +30785,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8431752371529145901, guid: 64b18e44923b1414fa43884a096efc44, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8534128394517013889, guid: 64b18e44923b1414fa43884a096efc44, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.98
@@ -31053,6 +31057,7 @@ GameObject:
   - component: {fileID: 1625556336}
   - component: {fileID: 1625556337}
   - component: {fileID: 1625556338}
+  - component: {fileID: 1625556339}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -31075,7 +31080,7 @@ MonoBehaviour:
   moveSpeed: 1
   dashDistance: 0.5
   movement: {x: 0, y: -1}
-  PlayerStats: {fileID: 0}
+  ps: {fileID: 0}
   rb: {fileID: 0}
   animator: {fileID: 0}
   isAttacking: 0
@@ -31149,7 +31154,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1429864247
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 11
   m_Sprite: {fileID: 4361010176606612733, guid: 528decdc14a1d7c49bc39fc9f8618f9f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -31257,6 +31262,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseStats: {fileID: 11400000, guid: 9ad159046c893db4abe9f43f387c28f7, type: 2}
   def: 0
+  atk: 0
+  spd: 0
+  critR: 0
+  critD: 0
+  luck: 0
   iframes: 1.5
   invincible: 0
 --- !u!114 &1625556335
@@ -31278,6 +31288,12 @@ MonoBehaviour:
   - {fileID: 1964286707}
   - {fileID: 1166075229}
   particleFX: {fileID: 2123406538311534012, guid: 58eeae8c06e072a4893e272699db34dc, type: 3}
+  atkPower:
+  - 1
+  - 1.05
+  - 1.2
+  - 0.95
+  - 0.8
   damage: 1
 --- !u!114 &1625556336
 MonoBehaviour:
@@ -31326,6 +31342,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 502015017}
   damageVis: {fileID: 861695100}
+--- !u!114 &1625556339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625556325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 179135e71780552438a12a1896bc168b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1629943295
 GameObject:
   m_ObjectHideFlags: 0
