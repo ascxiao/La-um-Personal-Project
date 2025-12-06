@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 022f5b721c88f1e4dbe11650b41c6283, type: 3}
   m_Name: Santermo
   m_EditorClassIdentifier: 
-  maxHealth: 999
+  maxHealth: 20
   baseAtk: 10
   baseDef: 12
   baseSpeed: 1

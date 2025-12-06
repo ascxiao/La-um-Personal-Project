@@ -17,6 +17,7 @@ public class EnemyHealth : MonoBehaviour
     private FloatingHealthBar floatingHealthBar;
     public GameObject healthBar;
     private Coroutine healthCoroutine;
+    private FloatingDamage floatingDamage;
 
     private void Start()
     {
@@ -26,6 +27,7 @@ public class EnemyHealth : MonoBehaviour
         enemyCombat = GetComponent<EnemyCombat>();
         damageFlash = GetComponent<DamageFlash>();
         floatingHealthBar = GetComponent<FloatingHealthBar>();
+        floatingDamage = GetComponent<FloatingDamage>();
         instance = this;
     }
     public void ChangeHealth(float amount)
@@ -33,7 +35,6 @@ public class EnemyHealth : MonoBehaviour
         if (!invincible || isHealing)
         {
             currentHealth += amount;
-            damageFlash.CallDamageFlash();
             healthBar.SetActive(true);
 
             if (healthCoroutine != null)
@@ -50,11 +51,14 @@ public class EnemyHealth : MonoBehaviour
         }
         else if (currentHealth <= 0)
         {
+            damageFlash.CallDamageFlash();
+            floatingDamage.DamageNumber(transform.position, Mathf.Abs(amount));
             animator.Play("Death");
         }
 
         if (amount < 0 && currentHealth > 0)
         {
+            floatingDamage.DamageNumber(transform.position, Mathf.Abs(amount));
             animator.Play("Stagger");
             invincible = true;
             enemyCombat.isStaggered = true;

@@ -10482,6 +10482,7 @@ GameObject:
   - component: {fileID: 6642992548676316905}
   - component: {fileID: 4673001481879633668}
   - component: {fileID: 6559487755942646881}
+  - component: {fileID: 8613974314546843053}
   m_Layer: 0
   m_Name: SantermoObject
   m_TagString: Enemy
@@ -10787,6 +10788,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyMovement: {fileID: 0}
+--- !u!114 &8613974314546843053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4578366807159362106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e856f0577a595843863cbd4962196bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatingNumbers: {fileID: 1701887788070897810, guid: 3c4885dd2aad9114cab3cf6e2bb4e8a4, type: 3}
+  zoomInScale: 0.01
+  zoomOutScale: 0.02
+  zoomDuration: 0.1
+  lifetime: 0.25
 --- !u!1 &5621332655891767638
 GameObject:
   m_ObjectHideFlags: 0
