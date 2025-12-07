@@ -7,6 +7,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] private InventoryItem itemPrefab;
     [SerializeField] private RectTransform contentPanel;
     [SerializeField] private InventoryDescription itemDescription;
+    [SerializeField] private DraggedItem draggedItem;
 
     List<InventoryItem> itemList = new List<InventoryItem>();
 
@@ -14,9 +15,11 @@ public class Inventory : MonoBehaviour
     public int quantity;
     public string title, description;
 
-    // {
-    //     Hide();
-    // }
+    private void Awake()
+    {
+        draggedItem.Toggle(false);
+    }
+
     public void InitializeInventoryUI(int inventorySize)
     {
         for (int i = 0; i < inventorySize; i++)
@@ -42,7 +45,8 @@ public class Inventory : MonoBehaviour
 
     private void HandleBeginDrag(InventoryItem obj)
     {
-
+        draggedItem.Toggle(true);
+        draggedItem.SetData(image, quantity);
     }
 
     private void HandleSwap(InventoryItem obj)
@@ -52,7 +56,7 @@ public class Inventory : MonoBehaviour
 
     private void HandleEndDrag(InventoryItem obj)
     {
-
+        draggedItem.Toggle(false);
     }
 
     private void HandleShowItemActions(InventoryItem obj)
