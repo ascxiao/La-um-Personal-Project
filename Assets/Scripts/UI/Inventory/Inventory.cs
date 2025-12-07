@@ -6,9 +6,17 @@ public class Inventory : MonoBehaviour
 {
     [SerializeField] private InventoryItem itemPrefab;
     [SerializeField] private RectTransform contentPanel;
+    [SerializeField] private InventoryDescription itemDescription;
 
     List<InventoryItem> itemList = new List<InventoryItem>();
 
+    public Sprite image;
+    public int quantity;
+    public string title, description;
+
+    // {
+    //     Hide();
+    // }
     public void InitializeInventoryUI(int inventorySize)
     {
         for (int i = 0; i < inventorySize; i++)
@@ -16,12 +24,47 @@ public class Inventory : MonoBehaviour
             InventoryItem item = Instantiate(itemPrefab, Vector3.zero, Quaternion.identity);
             item.transform.SetParent(contentPanel, false);
             itemList.Add(item);
+
+            item.OnItemClicked += HandleItemSelection;
+            item.OnItemBeginDrag += HandleBeginDrag;
+            item.OnItemDroppedOn += HandleSwap;
+            item.OnItemEndDrag += HandleEndDrag;
+            item.OnRightMouseBtnClick += HandleShowItemActions;
         }
     }
 
+    private void HandleItemSelection(InventoryItem obj)
+    {
+        itemDescription.gameObject.SetActive(true);
+        itemDescription.SetDescription(image, title, description);
+        itemList[0].Select();
+    }
+
+    private void HandleBeginDrag(InventoryItem obj)
+    {
+
+    }
+
+    private void HandleSwap(InventoryItem obj)
+    {
+
+    }
+
+    private void HandleEndDrag(InventoryItem obj)
+    {
+
+    }
+
+    private void HandleShowItemActions(InventoryItem obj)
+    {
+
+    }
     public void Show()
     {
         gameObject.SetActive(true);
+        itemDescription.ResetDescription();
+
+        itemList[0].SetData(image, quantity);
     }
 
     public void Hide()
