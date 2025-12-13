@@ -15844,6 +15844,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
   item: {fileID: 0}
+  canvasGroup: {fileID: 0}
 --- !u!114 &746748305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31676,7 +31677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryUI: {fileID: 413317086}
-  inventorySize: 6
+  inventoryData: {fileID: 11400000, guid: 67b928f4993794e41b246520d73b474b, type: 2}
 --- !u!1 &1629943295
 GameObject:
   m_ObjectHideFlags: 0
@@ -32943,6 +32944,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4284291959167368555, guid: 1eb632170861fd942aabe210c544a4cc, type: 3}
+      propertyPath: image2
+      value: 
+      objectReference: {fileID: 7715176380539869188, guid: 033a29faaa80c41438c2166ef7f4ed58, type: 3}
     - target: {fileID: 4284291959167368555, guid: 1eb632170861fd942aabe210c544a4cc, type: 3}
       propertyPath: draggedItem
       value: 

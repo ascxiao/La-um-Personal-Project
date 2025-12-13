@@ -37,6 +37,12 @@ public class Inventory : MonoBehaviour
             item.OnRightMouseBtnClick += HandleShowItemActions;
         }
     }
+    public void UpdateDescription(int itemIndex, Sprite itemImage, string name, string description)
+    {
+        itemDescription.SetDescription(itemImage, name, description);
+        DeselectAllItems();
+        itemList[itemIndex].Select();
+    }
 
     public void UpdateData(int itemIndex, Sprite itemImage, int itemQuantity)
     {

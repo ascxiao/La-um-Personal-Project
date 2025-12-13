@@ -14,9 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <isStackable>k__BackingField: 1
   <MaxStackSize>k__BackingField: 99
-  <Name>k__BackingField: Healing Hutan
-  <Description>k__BackingField: 'A juicy local fruit.
-
-
-    Heals HP by 10 points.'
-  <ItemImage>k__BackingField: {fileID: 8033092973025764044, guid: b4acdc5113a2d1345970e8576ddc4e87, type: 3}
+  <Name>k__BackingField: DUMMY
+  <Description>k__BackingField: GRAHHHHHHHHHHHHHHHHHH
+  <ItemImage>k__BackingField: {fileID: -2197737483112433991, guid: 033a29faaa80c41438c2166ef7f4ed58, type: 3}

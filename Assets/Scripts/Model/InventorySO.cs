@@ -1,21 +1,23 @@
 using UnityEngine;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "InventorySO", menuName = "Scriptable Objects/InventorySO")]
 public class InventorySO : ScriptableObject
 {
     [field: SerializeField]
-    public List<InventoryItem> inventoryItems;
+    public List<InventoryItemStruct> inventoryItems;
 
     [field: SerializeField]
     public int Size { get; set; } = 10;
 
     public void Initialize()
     {
-        inventoryItems = new List<InventoryItem>();
+        inventoryItems = new List<InventoryItemStruct>();
         for (int i = 0; i < Size; i++)
         {
-            inventoryItems.Add(InventoryItem.GetEmptyItem());
+            inventoryItems.Add(InventoryItemStruct.GetEmptyItem());
         }
     }
 
@@ -25,7 +27,7 @@ public class InventorySO : ScriptableObject
         {
             if (inventoryItems[i].IsEmpty)
             {
-                inventoryItems[i] = new InventoryItem
+                inventoryItems[i] = new InventoryItemStruct
                 {
                     itemName = item,
                     itemQuantity = quantity
@@ -33,26 +35,44 @@ public class InventorySO : ScriptableObject
             }
         }
     }
+
+    public Dictionary<int, InventoryItemStruct> GetCurrentInventoryState()
+    {
+        Dictionary<int, InventoryItemStruct> returnValue = new Dictionary<int, InventoryItemStruct>();
+
+        for (int i = 0; i < inventoryItems.Count; i++)
+        {
+            if (inventoryItems[i].IsEmpty)
+                continue;
+            returnValue[i] = inventoryItems[i];
+        }
+        return returnValue;
+    }
+
+    public InventoryItemStruct GetItemAt(int itemIndex)
+    {
+        return inventoryItems[itemIndex];
+    }
 }
 
 [Serializable]
-public struct InventoryItem
+public struct InventoryItemStruct
 {
     public int itemQuantity;
     public ItemSO itemName;
-    public bool IsEmpty => iteml == null;
+    public bool IsEmpty => itemName == null;
 
-    public InventoryItem ChangeQuantity(InventoryItem newQuantity)
+    public InventoryItemStruct ChangeQuantity(int newQuantity)
     {
-        return new InventoryItem
+        return new InventoryItemStruct
         {
-            item = this.item,
-            quantity = newQuantity,
+            itemName = this.itemName,
+            itemQuantity = newQuantity,
         };
     }
-    public static InventoryItem GetEmptyItem() => new InventoryItem
+    public static InventoryItemStruct GetEmptyItem() => new InventoryItemStruct
     {
-        item = null,
-        quantity = 0,
+        itemName = null,
+        itemQuantity = 0,
     };
 }
