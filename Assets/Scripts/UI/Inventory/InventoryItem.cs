@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class InventoryItem : MonoBehaviour
+public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler, IPointerClickHandler
 {
     [SerializeField] private Image itemImage;
     [SerializeField] private TMP_Text quantityTxt;
@@ -44,29 +44,34 @@ public class InventoryItem : MonoBehaviour
         this.borderImage.enabled = true;
     }
 
-    public void OnBeginDrag()
+    public void OnBeginDrag(PointerEventData eventData)
     {
         if (empty)
             return;
+        Debug.Log("OnBeginDrag called on: " + gameObject.name);
         OnItemBeginDrag?.Invoke(this);
     }
 
-    public void OnDrop()
+    public void OnDrag(PointerEventData eventData)
     {
+        // Required for drag to work, can be empty
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        Debug.Log("OnDrop called on: " + gameObject.name);
         OnItemDroppedOn?.Invoke(this);
     }
 
-    public void OnEndDrag()
+    public void OnEndDrag(PointerEventData eventData)
     {
+        Debug.Log("OnEndDrag called on: " + gameObject.name);
         OnItemEndDrag?.Invoke(this);
     }
 
-    public void OnPointClick(BaseEventData data)
+    public void OnPointerClick(PointerEventData eventData)
     {
-        if (empty)
-            return;
-        PointerEventData pointerData = (PointerEventData)data;
-        if (pointerData.button == PointerEventData.InputButton.Right)
+        if (eventData.button == PointerEventData.InputButton.Right)
         {
             OnRightMouseBtnClick?.Invoke(this);
         }
