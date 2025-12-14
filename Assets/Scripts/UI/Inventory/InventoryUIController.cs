@@ -1,4 +1,7 @@
 using UnityEngine;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using InventoryController.UI;
 using InventoryController.Model;
@@ -11,14 +14,36 @@ namespace InventoryController
         [SerializeField] InventorySO inventoryData;
         private PlayerControls playerControls;
 
+        public List<InventoryItemStruct> initialItems = new List<InventoryItemStruct>();
+
         private void Start()
         {
             PrepareUI();
-            //inventoryData.Initialize();
+            PrepareInventoryData();
+        }
+
+        private void PrepareInventoryData()
+        {
+            inventoryData.Initialize();
+            inventoryData.OnInventoryUpdated += UpdateInventoryUI;
+            foreach (InventoryItemStruct item in initialItems)
+            {
+                if (item.IsEmpty)
+                    continue;
+                inventoryData.AddItem(item);
+            }
         }
         private void Awake()
         {
             playerControls = new PlayerControls();
+        }
+        private void UpdateInventoryUI(Dictionary<int, InventoryItemStruct> inventoryState)
+        {
+            inventoryUI.ResetAllItems();
+            foreach (var item in inventoryState)
+            {
+                inventoryUI.UpdateData(item.Key, item.Value.itemName.ItemImage, item.Value.itemQuantity);
+            }
         }
         private void PrepareUI()
         {
@@ -42,12 +67,15 @@ namespace InventoryController
         }
         private void HandleSwapItems(int itemIndex1, int itemIndex2)
         {
-
+            inventoryData.SwapItems(itemIndex1, itemIndex2);
         }
 
         private void HandleDragging(int itemIndex)
         {
-
+            InventoryItemStruct inventoryItem = inventoryData.GetItemAt(itemIndex);
+            if (inventoryItem.IsEmpty)
+                return;
+            inventoryUI.CreateDraggedItem(inventoryItem.itemName.ItemImage, inventoryItem.itemQuantity);
         }
         private void HandleItemActionRequest(int itemIndex)
         {

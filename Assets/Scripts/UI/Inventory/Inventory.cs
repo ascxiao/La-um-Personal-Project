@@ -89,6 +89,7 @@ namespace InventoryController.UI
             }
 
             OnSwapItems?.Invoke(currentlyDraggedItemIndex, index);
+            HandleItemSelection(inventoryItemUI);
         }
 
         private void HandleEndDrag(InventoryItem inventoryItemUI)
@@ -129,6 +130,14 @@ namespace InventoryController.UI
         {
             foreach (InventoryItem item in itemList)
             {
+                item.Deselect();
+            }
+        }
+        public void ResetAllItems()
+        {
+            foreach (var item in itemList)
+            {
+                item.ResetData();
                 item.Deselect();
             }
         }

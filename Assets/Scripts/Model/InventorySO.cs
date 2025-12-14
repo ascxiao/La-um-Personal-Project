@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using InventoryController.UI;
 
 namespace InventoryController.Model
 {
@@ -13,6 +14,7 @@ namespace InventoryController.Model
 
         [field: SerializeField]
         public int Size { get; set; } = 10;
+        public event Action<Dictionary<int, InventoryItemStruct>> OnInventoryUpdated;
 
         public void Initialize()
         {
@@ -34,8 +36,14 @@ namespace InventoryController.Model
                         itemName = item,
                         itemQuantity = quantity
                     };
+                    return;
                 }
             }
+        }
+
+        public void AddItem(InventoryItemStruct item)
+        {
+            AddItem(item.itemName, item.itemQuantity);
         }
 
         public Dictionary<int, InventoryItemStruct> GetCurrentInventoryState()
@@ -54,6 +62,19 @@ namespace InventoryController.Model
         public InventoryItemStruct GetItemAt(int itemIndex)
         {
             return inventoryItems[itemIndex];
+        }
+
+        public void SwapItems(int item1Index, int item2Index)
+        {
+            InventoryItemStruct item1 = inventoryItems[item1Index];
+            inventoryItems[item1Index] = inventoryItems[item2Index];
+            inventoryItems[item2Index] = item1;
+            InformAboutChange();
+        }
+
+        private void InformAboutChange()
+        {
+            OnInventoryUpdated?.Invoke(GetCurrentInventoryState());
         }
     }
 
