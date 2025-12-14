@@ -5,8 +5,11 @@ public class EnemyTransition : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        EnemyCombat.instance.rb.linearVelocity = Vector2.zero;
-
+        try
+        {
+            EnemyCombat.instance.rb.linearVelocity = Vector2.zero;
+        }
+        catch { }
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

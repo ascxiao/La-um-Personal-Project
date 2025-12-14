@@ -40,7 +40,7 @@ public class EnemyMovement : MonoBehaviour
         else if (!isAggro && !boundaryCollider.OverlapPoint(transform.position))
         {
             Vector2 direction = (boundaryCollider.bounds.center - transform.position).normalized;
-            rb.linearVelocity = direction * 0.5f;
+            rb.linearVelocity = direction;
             Flip(direction);
         }
     }
@@ -65,10 +65,12 @@ public class EnemyMovement : MonoBehaviour
     public void DisableCoroutine()
     {
         if (moveCoroutine != null)
+        {
             StopCoroutine(moveCoroutine);
+            moveCoroutine = null;
+        }
 
-        if (TryGetComponent(out Rigidbody2D rb))
-            rb.linearVelocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
     }
 
     ///------------------------------------------
@@ -131,7 +133,6 @@ public class EnemyMovement : MonoBehaviour
             movement = Random.insideUnitCircle.normalized;
 
             rb.linearVelocity = movement * movementSpeed;
-
             yield return new WaitForSeconds(intervalMovement);
 
         }

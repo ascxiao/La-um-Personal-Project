@@ -1,10 +1,21 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class EnemyCombat : MonoBehaviour
 {
-    public int damage = 1;
-    private Transform player;
+    public StatsSO baseStats;
+
+    private float atk;
+    public float def;
+    private float critR;
+    private float critD;
+    private float luck;
+    [SerializeField] private float[] atkPower;
+    private int atkIndex = 0;
+    private PlayerStats playerStats;
+    private CombatManager cm;
+    private AggroBehavior ab;
 
     [SerializeField] private GameObject atkHitbox;
     [SerializeField] private GameObject atkProx;
@@ -16,51 +27,32 @@ public class EnemyCombat : MonoBehaviour
     private Coroutine timer;
     public bool isAttacking = false;
     public bool isStaggered = false;
-
-    public EnemyMovement enemyMovement;
     public static EnemyCombat instance;
+
 
     private void Start()
     {
+        atk = baseStats.baseAtk;
+        def = baseStats.baseDef;
+        critR = baseStats.baseCritR;
+        critD = baseStats.baseCritD;
+        luck = baseStats.baseLuck;
+
         hitbox = atkHitbox.GetComponent<Collider2D>();
         atkProxCol = atkProx.GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        cm = GetComponent<CombatManager>();
+        ab = GetComponent<AggroBehavior>();
 
         instance = this;
     }
 
-    //CHASING STATE
 
     private void Update()
     {
-        Chase();
+        ab.Chase(rb, isStaggered, isAttacking);
     }
-
-    private void Chase()
-    {
-        if (!isStaggered)
-        {
-            if (enemyMovement.isAggro && !isAttacking)
-            {
-                enemyMovement.DisableCoroutine();
-                Vector2 direction = (player.position - transform.position).normalized;
-                enemyMovement.Flip(direction);
-
-                rb.linearVelocity = direction * enemyMovement.aggroSpeed;
-            }
-            else
-            {
-                enemyMovement.EnableCoroutine();
-            }
-        }
-        else
-        {
-            rb.linearVelocity = Vector2.zero;
-        }
-    }
-
 
     //ATTACKING STATE
     public void EnemyEnableHitbox()
@@ -88,7 +80,13 @@ public class EnemyCombat : MonoBehaviour
 
         if (hitbox.IsTouching(other) && other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerHealth>()?.ChangeHealth(-damage);
+            playerStats = other.GetComponentInParent<PlayerStats>();
+            float currentPower = atkPower[atkIndex];
+            other.GetComponent<PlayerStats>()?.ChangeHealth(-cm.DamageCalculator(atk, playerStats.def, critR, critD, luck, currentPower));
+
+            atkIndex++;
+            if (atkIndex >= atkPower.Length)
+                atkIndex = 0;
         }
     }
 
@@ -108,6 +106,7 @@ public class EnemyCombat : MonoBehaviour
             timer = StartCoroutine(WaitForReset());
         }
     }
+
 
     private IEnumerator WaitForReset()
     {

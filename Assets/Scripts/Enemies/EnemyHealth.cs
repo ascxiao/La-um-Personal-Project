@@ -3,9 +3,8 @@ using System.Collections;
 
 public class EnemyHealth : MonoBehaviour
 {
-
-    [SerializeField] public int maxHealth;
-    public int currentHealth;
+    public StatsSO baseStats;
+    public float currentHealth;
 
     private SpriteRenderer sr;
     private Animator animator;
@@ -18,23 +17,24 @@ public class EnemyHealth : MonoBehaviour
     private FloatingHealthBar floatingHealthBar;
     public GameObject healthBar;
     private Coroutine healthCoroutine;
+    private FloatingDamage floatingDamage;
 
     private void Start()
     {
-        currentHealth = maxHealth;
+        currentHealth = baseStats.maxHealth;
         animator = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         enemyCombat = GetComponent<EnemyCombat>();
         damageFlash = GetComponent<DamageFlash>();
         floatingHealthBar = GetComponent<FloatingHealthBar>();
+        floatingDamage = GetComponent<FloatingDamage>();
         instance = this;
     }
-    public void ChangeHealth(int amount)
+    public void ChangeHealth(float amount)
     {
         if (!invincible || isHealing)
         {
             currentHealth += amount;
-            damageFlash.CallDamageFlash();
             healthBar.SetActive(true);
 
             if (healthCoroutine != null)
@@ -42,20 +42,23 @@ public class EnemyHealth : MonoBehaviour
                 StopCoroutine(healthCoroutine);
             }
             healthCoroutine = StartCoroutine(HealthBar());
-            floatingHealthBar.UpdateHealthBar(currentHealth, maxHealth);
+            floatingHealthBar.UpdateHealthBar(currentHealth, baseStats.maxHealth);
         }
 
-        if (currentHealth > maxHealth)
+        if (currentHealth > baseStats.maxHealth)
         {
-            currentHealth = maxHealth;
+            currentHealth = baseStats.maxHealth;
         }
         else if (currentHealth <= 0)
         {
+            damageFlash.CallDamageFlash();
+            floatingDamage.DamageNumber(transform.position, Mathf.Abs(amount));
             animator.Play("Death");
         }
 
         if (amount < 0 && currentHealth > 0)
         {
+            floatingDamage.DamageNumber(transform.position, Mathf.Abs(amount));
             animator.Play("Stagger");
             invincible = true;
             enemyCombat.isStaggered = true;
