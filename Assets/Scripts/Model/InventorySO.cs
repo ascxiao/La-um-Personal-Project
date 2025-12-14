@@ -28,11 +28,11 @@ namespace InventoryController.Model
 
         public int AddItem(ItemSO item, int quantity)
         {
-            if (!item.isStackable)
+            if (item.isStackable == false)
             {
                 for (int i = 0; i < inventoryItems.Count; i++)
                 {
-                    while (quanitity > 0 && !IsInventoryFull())
+                    while (quantity > 0 && !IsInventoryFull())
                     {
                         quantity -= AddNonStackableItem(item, 1);
                     }
@@ -87,9 +87,9 @@ namespace InventoryController.Model
                     }
                 }
             }
-            while (quantity > 0 && !IsInventoryFull())
+            while (quantity > 0 && IsInventoryFull() == false)
             {
-                int newQuantity = MathF.Clamp(quantity, 0, item.MaxStackSize);
+                int newQuantity = Mathf.Clamp(quantity, 0, item.MaxStackSize);
                 quantity -= newQuantity;
                 AddItemToFirstFreeSlot(item, newQuantity);
             }
