@@ -544,6 +544,7 @@ GameObject:
   - component: {fileID: 8051286857448793803}
   - component: {fileID: 9190015055695571065}
   - component: {fileID: 3127494448185793528}
+  - component: {fileID: 1167414322339849848}
   m_Layer: 5
   m_Name: ItemDesc
   m_TagString: Untagged
@@ -636,6 +637,21 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1167414322339849848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3494102900478338902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 871630267d2342442ac0a08bf0e65daa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemImage: {fileID: 8426010649592149468}
+  title: {fileID: 3993434548685302201}
+  description: {fileID: 7755262343950466598}
 --- !u!1 &3774811149735764939
 GameObject:
   m_ObjectHideFlags: 0
@@ -1367,7 +1383,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 8033092973025764044, guid: b4acdc5113a2d1345970e8576ddc4e87, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1632,3 +1648,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 4899960379466221769, guid: 666877ee5abdfd340b6d77d4af451eb4, type: 3}
   contentPanel: {fileID: 1274138032797158292}
+  itemDescription: {fileID: 1167414322339849848}
+  image: {fileID: 5646559067778099841, guid: 8c88531cffd285446838087472139599, type: 3}
+  quantity: 1
+  title: Healing Hutan
+  description: MEOWWWWW

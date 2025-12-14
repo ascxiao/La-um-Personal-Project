@@ -1,33 +1,109 @@
 using UnityEngine;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.InputSystem;
+using InventoryController.UI;
+using InventoryController.Model;
 
-public class InventoryUIController : MonoBehaviour
+namespace InventoryController
 {
-    [SerializeField] private Inventory inventoryUI;
-    private PlayerControls playerControls;
-
-    public int inventorySize = 6;
-    private void Awake()
+    public class InventoryUIController : MonoBehaviour
     {
-        playerControls = new PlayerControls();
-        inventoryUI.InitializeInventoryUI(inventorySize);
-    }
+        [SerializeField] private Inventory inventoryUI;
+        [SerializeField] InventorySO inventoryData;
+        private PlayerControls playerControls;
 
-    private void OnEnable()
-    {
-        playerControls.Enable();
-        playerControls.Menu.Inventory.performed += Inventory;
-    }
+        public List<InventoryItemStruct> initialItems = new List<InventoryItemStruct>();
 
-    void Inventory(InputAction.CallbackContext context)
-    {
-        if (inventoryUI.isActiveAndEnabled == false)
+        private void Start()
         {
-            inventoryUI.Show();
+            PrepareUI();
+            PrepareInventoryData();
         }
-        else
+
+        private void PrepareInventoryData()
         {
-            inventoryUI.Hide();
+            inventoryData.Initialize();
+            inventoryData.OnInventoryUpdated += UpdateInventoryUI;
+            foreach (InventoryItemStruct item in initialItems)
+            {
+                if (item.IsEmpty)
+                    continue;
+                inventoryData.AddItem(item);
+            }
+        }
+        private void Awake()
+        {
+            playerControls = new PlayerControls();
+        }
+        private void UpdateInventoryUI(Dictionary<int, InventoryItemStruct> inventoryState)
+        {
+            inventoryUI.ResetAllItems();
+            foreach (var item in inventoryState)
+            {
+                inventoryUI.UpdateData(item.Key, item.Value.itemName.ItemImage, item.Value.itemQuantity);
+            }
+        }
+        private void PrepareUI()
+        {
+            inventoryUI.InitializeInventoryUI(inventoryData.Size);
+            this.inventoryUI.OnDescriptionRequested += HandleDescriptionRequest;
+            this.inventoryUI.OnSwapItems += HandleSwapItems;
+            this.inventoryUI.OnStartDragging += HandleDragging;
+            this.inventoryUI.OnItemActionRequested += HandleItemActionRequest;
+        }
+
+        private void HandleDescriptionRequest(int itemIndex)
+        {
+            InventoryItemStruct inventoryItem = inventoryData.GetItemAt(itemIndex);
+            if (inventoryItem.IsEmpty)
+            {
+                inventoryUI.ResetSelection();
+                return;
+            }
+            ItemSO item = inventoryItem.itemName;
+            inventoryUI.UpdateDescription(itemIndex, item.ItemImage, item.Name, item.Description);
+        }
+        private void HandleSwapItems(int itemIndex1, int itemIndex2)
+        {
+            inventoryData.SwapItems(itemIndex1, itemIndex2);
+        }
+
+        private void HandleDragging(int itemIndex)
+        {
+            InventoryItemStruct inventoryItem = inventoryData.GetItemAt(itemIndex);
+            if (inventoryItem.IsEmpty)
+                return;
+            inventoryUI.CreateDraggedItem(inventoryItem.itemName.ItemImage, inventoryItem.itemQuantity);
+        }
+        private void HandleItemActionRequest(int itemIndex)
+        {
+
+        }
+
+        private void OnEnable()
+        {
+            playerControls.Enable();
+            playerControls.Menu.Inventory.performed += Inventory;
+        }
+
+        void Inventory(InputAction.CallbackContext context)
+        {
+            if (inventoryUI.isActiveAndEnabled == false)
+            {
+                inventoryUI.Show();
+                foreach (var item in inventoryData.GetCurrentInventoryState())
+                {
+                    inventoryUI.UpdateData(item.Key,
+                    item.Value.itemName.ItemImage,
+                    item.Value.itemQuantity);
+                }
+            }
+            else
+            {
+                inventoryUI.Hide();
+            }
         }
     }
 }
